@@ -5,12 +5,20 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app",
-    "test": "mocha"
+    "start:dev": "nodemon src/app",
+    "test": "mocha test --recursive --exit"
   },
   "author": "jcockbain96@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.6.0",
+    "nodemon": "^1.19.4"
+  }
 }
