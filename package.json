@@ -1,0 +1,20 @@
+{
+  "name": "james-cockbain-to-do-app",
+  "version": "1.0.0",
+  "description": "App for managing TODO tasks",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jcockbain@bitbucket.org/axis-workshops/james-cockbain-to-do-app.git"
+  },
+  "author": "jcockbain96@gmail.com",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/axis-workshops/james-cockbain-to-do-app#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
