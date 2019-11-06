@@ -1,0 +1,16 @@
+{
+  "name": "todo-server",
+  "version": "1.0.0",
+  "description": "Server for managing todo tasks",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app",
+    "test": "mocha"
+  },
+  "author": "jcockbain96@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
