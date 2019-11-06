@@ -17,7 +17,7 @@ const additionalTask = {
 
 const initialTaskList = [task1];
 
-describe("/api/v1 tasks", () => {
+describe("Tasks.js", () => {
   let tasks;
   tasks = new Tasks(initialTaskList);
 

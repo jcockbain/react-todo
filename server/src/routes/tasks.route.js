@@ -9,6 +9,8 @@ router
   .get(tasksController.getTasks)
   .post(tasksController.postTask);
 
+router.get("/:id", tasksController.getTask);
+
 router.route("/reset").post(tasksController.resetTasks);
 
 module.exports = router;

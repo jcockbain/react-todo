@@ -7,6 +7,16 @@ const getTasks = (req, res, next) => {
   }
 };
 
+const getTask = (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const task = req.tasks.getTask(id);
+    res.status(200).send(task);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const postTask = (req, res, next) => {
   try {
     const { description, completeBy, completed } = req.body;
@@ -32,6 +42,7 @@ const resetTasks = (req, res, next) => {
 
 module.exports = {
   getTasks,
+  getTask,
   postTask,
   resetTasks,
 };
