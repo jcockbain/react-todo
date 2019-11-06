@@ -3,6 +3,10 @@ class Tasks {
     this.tasks = taskList;
   }
 
+  resetTasks() {
+    this.tasks = [];
+  }
+
   getTasks() {
     return this.tasks;
   }

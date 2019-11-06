@@ -6,7 +6,7 @@ const Tasks = require("./Tasks");
 
 const app = express();
 
-const tasks = new Tasks();
+const tasks = new Tasks([]);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,7 +17,6 @@ app.use(function(req, res, next) {
 });
 
 app.use("/api/v1/", routes);
-
 
 app.listen(3000, () => {
   console.log("App listening on port 3000!");

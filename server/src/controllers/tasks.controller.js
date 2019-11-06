@@ -7,6 +7,31 @@ const getTasks = (req, res, next) => {
   }
 };
 
+const postTask = (req, res, next) => {
+  try {
+    const { description, completeBy, completed } = req.body;
+    req.tasks.addTask({
+      description,
+      completeBy,
+      completed,
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const resetTasks = (req, res, next) => {
+  try {
+    req.tasks.resetTasks();
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getTasks,
+  postTask,
+  resetTasks,
 };
