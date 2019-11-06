@@ -1,0 +1,8 @@
+# Node
+node_modules/
+
+# Project
+dist
+
+# vscode
+.vscode/
