@@ -1,8 +1,6 @@
-const tasksService = require("../services/tasks.service");
-
 const getTasks = (req, res, next) => {
   try {
-    const tasks = tasksService.getAllTasks();
+    const tasks = req.tasks.getTasks();
     res.status(200).send(tasks);
   } catch (err) {
     next(err);
