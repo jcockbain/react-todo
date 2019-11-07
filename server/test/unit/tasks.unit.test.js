@@ -61,7 +61,7 @@ describe("Tasks.js", () => {
     it("should delete the additional task", () => {
       tasks.deleteTask(2);
       const taskList = tasks.getTasks();
-      expect(taskList).to.deep.equal(initialTaskList);
+      expect(taskList).to.deep.equal([{ ...task1, id: 1 }]);
     });
   });
 });

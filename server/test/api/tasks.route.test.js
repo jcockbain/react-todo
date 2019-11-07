@@ -15,7 +15,7 @@ const task2 = {
 };
 
 const taskUpdate = {
-  description: "cook pasta"
+  description: "cook pasta",
 };
 
 describe("/api/v1/tasks", () => {
@@ -51,7 +51,10 @@ describe("/api/v1/tasks", () => {
     it("returns 200, and the added tasks", async () => {
       const res = await server().get("/api/v1/tasks");
       expect(res.status).to.equal(200);
-      expect(res.body).to.deep.equal([{ ...task1, id: 1 },  { ...task2, id: 2 }]);
+      expect(res.body).to.deep.equal([
+        { ...task1, id: 1 },
+        { ...task2, id: 2 },
+      ]);
     });
   });
   describe("GET /tasks/id", () => {
@@ -63,13 +66,26 @@ describe("/api/v1/tasks", () => {
   });
   describe("PUT /tasks/id", () => {
     it("returns 200", async () => {
-      const res = await server().put("/api/v1/tasks/1").send(taskUpdate);
+      const res = await server()
+        .put("/api/v1/tasks/1")
+        .send(taskUpdate);
       expect(res.status).to.equal(200);
     });
     it("has updated the tasks list correctly", async () => {
       const res = await server().get("/api/v1/tasks/1");
       expect(res.status).to.equal(200);
-      expect(res.body).to.deep.equal({ ...task1, id: 1, ...taskUpdate});
+      expect(res.body).to.deep.equal({ ...task1, id: 1, ...taskUpdate });
+    });
+  });
+  describe("DELETE /tasks/id", () => {
+    it("returns 200", async () => {
+      const res = await server().delete("/api/v1/tasks/2");
+      expect(res.status).to.equal(200);
+    });
+    it("has removed the correct element from the taskList", async () => {
+      const res = await server().get("/api/v1/tasks");
+      expect(res.status).to.equal(200);
+      expect(res.body).to.deep.equal([{ ...task1, id: 1, ...taskUpdate }]);
     });
   });
 });

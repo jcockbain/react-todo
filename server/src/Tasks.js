@@ -1,6 +1,7 @@
 class Tasks {
   constructor(taskList) {
     this.tasks = taskList;
+    this.taskNumber = taskList.length;
   }
 
   resetTasks() {
@@ -12,7 +13,8 @@ class Tasks {
   }
 
   addTask(taskInfo) {
-    this.tasks.push({ ...taskInfo, id: this.tasks.length + 1 });
+    this.taskNumber += 1;
+    this.tasks.push({ ...taskInfo, id: this.taskNumber });
   }
 
   getTask(id) {
@@ -30,7 +32,7 @@ class Tasks {
       }
     });
     if (todoFound) {
-      this.tasks.splice(id, itemIndex);
+      this.tasks.splice(itemIndex, 1);
     } else {
       throw new Error(`Task with id ${id} not found`);
     }

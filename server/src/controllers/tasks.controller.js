@@ -41,6 +41,16 @@ const putTask = (req, res, next) => {
   }
 };
 
+const deleteTask = (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  try {
+    req.tasks.deleteTask(id);
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const resetTasks = (req, res, next) => {
   try {
     req.tasks.resetTasks();
@@ -55,5 +65,6 @@ module.exports = {
   getTask,
   postTask,
   putTask,
+  deleteTask,
   resetTasks,
 };
