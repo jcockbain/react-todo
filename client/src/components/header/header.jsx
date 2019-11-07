@@ -4,8 +4,8 @@ import classes from './header.module.css';
 
 const Header = () => (
   <header className={classes.header}>
-    <img className={classes.logo} src={ReactLogo} alt="logo" />
-    <h1>React Starter App</h1>
+    {/* <img className={classes.logo} src={ReactLogo} alt="logo" /> */}
+    <h1>Task Manager!</h1>
   </header>
 );
 

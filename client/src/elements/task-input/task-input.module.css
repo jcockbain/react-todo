@@ -1,0 +1,7 @@
+.createTask input[type=text] {
+  margin: 2.5em 2em;
+  width: 80%;
+  outline: none;
+  border: none;
+  padding: 0.7em;
+}

@@ -1,0 +1,22 @@
+.deleteButton {
+  fill: 'red'
+}
+
+.task {
+  font-size: 14px;
+  border: 2px solid #494CA2;
+  border-radius: 5px;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.task button {
+  background: #494CA2;
+  border-radius: 5px;
+  margin: 0px 5px;
+  padding: 3px 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  float: right;
+}
