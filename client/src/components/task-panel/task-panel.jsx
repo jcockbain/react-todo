@@ -12,32 +12,15 @@ const TaskPanel = () => {
 
   console.log(tasks);
 
+  // For page first loading
   useEffect(() => {
     const fetchData = () => {
-      getTasks();
+      setNewTasks();
     };
     fetchData();
   }, []);
 
-  // const postTask = taskID => {
-  //   axios
-  //     .post(`${origin}/api/v1/tasks/${taskID}`)
-  //     .then(getTasks())
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const putTask = (taskID, taskInfo) => {
-  //   axios
-  //     .put(`${origin}/api/v1/tasks/${taskID}`)
-  //     .then(getTasks())
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
-
-  const getTasks = () => {
+  const setNewTasks = () => {
     axios
       .get(`${origin}/api/v1/tasks`)
       .then(response => {
@@ -47,11 +30,28 @@ const TaskPanel = () => {
         console.log(err);
       });
   };
+  const postTask = taskInfo => {
+    axios
+      .post(`${origin}/api/v1/tasks`, taskInfo)
+      .then(setNewTasks())
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const putTask = (taskID, taskInfo) => {
+    axios
+      .put(`${origin}/api/v1/tasks/${taskID}`, taskInfo)
+      .then(setNewTasks())
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const deleteTask = taskID => {
     axios
       .delete(`${origin}/api/v1/tasks/${taskID}`)
-      .then(getTasks())
+      .then(setNewTasks())
       .catch(err => {
         console.log(err);
       });
@@ -67,13 +67,19 @@ const TaskPanel = () => {
     <div className={classes.taskListContainer}>
       <div className="tasks">
         {tasks.map((task, index) => (
-          <Task task={task} index={index} key={index} deleteTask={deleteTask} />
+          <Task
+            task={task}
+            index={index}
+            key={index}
+            deleteTask={deleteTask}
+            putTask={putTask}
+          />
         ))}
       </div>
       <div className={classes.addTaskButton}>
         <button>Add task</button>
       </div>
-      <TaskForm submitTask={addTask} />
+      <TaskForm submitTask={postTask} />
     </div>
   );
 };

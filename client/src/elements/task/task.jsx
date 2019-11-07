@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import classes from "./task.module.css";
 
-const Task = ({ task, deleteTask, index }) => {
+const Task = ({ task, deleteTask, putTask, index }) => {
   return (
     <div className={classes.task}>
       <div className={classes.taskDescription}>{task.description}</div>
@@ -15,7 +15,9 @@ const Task = ({ task, deleteTask, index }) => {
         <button
           style={{ backgroundColor: "green" }}
           className={classes.complete}
-          onClick={() => {}}
+          onClick={() =>
+            putTask(task.id, { ...task, completed: !task.completed })
+          }
         >
           {task.completed ? "Uncomplete" : "Complete"}
         </button>
