@@ -1,37 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Task from "../../elements/task";
 
+import ApiRequests from "../../utils/apiRequests";
+import { origin } from "../../config";
+
 import classes from "./task-panel.module.css";
 import TaskForm from "../task-form";
+import axios from "axios";
 
 const TaskPanel = () => {
-  const [tasks, setTasks] = useState([
-    {
-      description: "Complete Homework",
-      completeBy: 1487730600000,
-      completed: false,
-    },
-    {
-      description: "Walk dog",
-      completeBy: 1487730600000,
-      completed: false,
-    },
-    {
-      description: "Walk dog",
-      completeBy: 1487730600000,
-      completed: false,
-    },
-    {
-      description: "Walk dog",
-      completeBy: 1487730600000,
-      completed: false,
-    },
-    {
-      description: "Walk dog",
-      completeBy: 1487730600000,
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .get(`${origin}/api/v1/tasks`)
+        .then(response => {
+          setTasks(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className={classes.taskListContainer}>
       <div className="tasks">
