@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
+import TaskInput from "../task-input";
 
 import classes from "./task.module.css";
 
 const Task = ({ task, deleteTask, putTask }) => {
+  const [taskDescription, setTaskDescription] = useState(task.description);
+
+  useEffect(() => {
+    putTask(task.id, taskDescription);
+  }, [taskDescription]);
+
+  const onChange = () =>
+    putTask(task.id, {
+      ...task,
+      description: taskDescription,
+    });
+
   return (
     <div
       style={
@@ -14,11 +27,13 @@ const Task = ({ task, deleteTask, putTask }) => {
       }
       className={classes.task}
     >
-      <div className={classes.taskDescription}>{task.description}</div>
+      <div className={classes.taskDescription}>
+        <TaskInput
+          defaultValue={taskDescription}
+          addTask={setTaskDescription}
+        />
+      </div>
       <div className={classes.taskButtons}>
-        <button style={{ backgroundColor: "#494CA2" }} onClick={() => {}}>
-          Edit
-        </button>
         <button
           style={{ backgroundColor: "green" }}
           className={classes.complete}

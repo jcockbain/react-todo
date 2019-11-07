@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import classes from "./task-input.module.css";
 
-const TaskInput = ({ addTask }) => {
-  const [value, setValue] = useState("");
+const TaskInput = ({ addTask, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
     if (value) {

@@ -65,36 +65,24 @@ const TaskPanel = () => {
       });
   };
 
-  
-
-  const taskList = tasks.length > 0 ? (
-    tasks.map((task, index) => (
-      <Task
-        task={task}
-        index={index}
-        key={index}
-        deleteTask={deleteTask}
-        putTask={putTask}
-      />
-    ))
-  ) : (
-    <p>Add some tasks!</p>
-  );
+  const taskList =
+    tasks.length > 0 ? (
+      tasks.map((task, index) => (
+        <Task
+          task={task}
+          index={index}
+          key={index}
+          deleteTask={deleteTask}
+          putTask={putTask}
+        />
+      ))
+    ) : (
+      <p>Add some tasks!</p>
+    );
 
   return (
     <div className={classes.taskListContainer}>
-      <div className="tasks">
-        {taskList}
-        {/* {tasks.map((task, index) => (
-          <Task
-            task={task}
-            index={index}
-            key={index}
-            deleteTask={deleteTask}
-            putTask={putTask}
-          />
-        ))} */}
-      </div>
+      <div className="tasks">{taskList}</div>
       <TaskForm submitTask={postTask} />
     </div>
   );
