@@ -9,7 +9,7 @@ const Task = ({ task, index }) => {
     <div className={classes.task}>
       <div className={classes.taskDescription}>{task.description}</div>
       <div className={classes.taskButtons}>
-        <button className={classes.edit} onClick={() => {}}>
+        <button style={{ backgroundColor: "#494CA2" }} onClick={() => {}}>
           Edit
         </button>
         <button
@@ -19,7 +19,7 @@ const Task = ({ task, index }) => {
         >
           {task.completed ? "Uncomplete" : "Complete"}
         </button>
-        <button style={{ backgroundColor: "red" }} onClick={() => {}}>
+        <button style={{ backgroundColor: "#C70D3A" }} onClick={() => {}}>
           x
         </button>
       </div>

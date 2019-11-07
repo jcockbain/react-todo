@@ -39,6 +39,9 @@ const TaskPanel = () => {
           <Task task={task} index={index} key={index} />
         ))}
       </div>
+      <div className={classes.addTaskButton}>
+        <button>Add task</button>
+      </div>
       <TaskForm />
     </div>
   );

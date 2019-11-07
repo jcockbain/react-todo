@@ -8,13 +8,14 @@ import classes from "./task-form.module.css";
 const TaskForm = props => {
   return (
     <div className={classes.taskFormContainer}>
-      Add a new task
       <div className={classes.addTask}>
         <div className={classes.submitButton}>
           <button>Submit</button>
         </div>
-        <TaskInput />
-        <DatePicker />
+        <div>
+          <TaskInput />
+          <DatePicker />
+        </div>
       </div>
     </div>
   );
