@@ -16,35 +16,39 @@ class Tasks {
   }
 
   getTask(id) {
-    return this.tasks.find(task => id === task.id);
+    const task = this.tasks.find(task => id === task.id);
+    return task;
   }
 
   deleteTask(id) {
     let todoFound;
     let itemIndex;
-    this.tasks.map((todo, index) => {
-      if (todo.id === id) {
-        todoFound = todo;
+    this.tasks.map((task, index) => {
+      if (task.id === id) {
+        todoFound = task;
         itemIndex = index;
       }
     });
     if (todoFound) {
       this.tasks.splice(id, itemIndex);
+    } else {
+      throw new Error(`Task with id ${id} not found`);
     }
   }
 
   updateTask(id, taskInfo) {
-    let todoFound;
+    let taskFound;
     let itemIndex;
-    this.tasks.map((todo, index) => {
-      if (todo.id === id) {
-        todoFound = todo;
+    this.tasks.map((task, index) => {
+      if (task.id === id) {
+        taskFound = task;
         itemIndex = index;
       }
     });
-    if (todoFound) {
-      const currentTask = this.getTask(id);
-      this.tasks.splice(itemIndex, 1, { ...currentTask, ...taskInfo });
+    if (taskFound) {
+      this.tasks.splice(itemIndex, 1, { ...taskFound, ...taskInfo });
+    } else {
+      throw new Error(`Task with id ${id} not found`);
     }
   }
 }

@@ -8,7 +8,7 @@ const getTasks = (req, res, next) => {
 };
 
 const getTask = (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   try {
     const task = req.tasks.getTask(id);
     res.status(200).send(task);
@@ -31,6 +31,16 @@ const postTask = (req, res, next) => {
   }
 };
 
+const putTask = (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  try {
+    req.tasks.updateTask(id, req.body);
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const resetTasks = (req, res, next) => {
   try {
     req.tasks.resetTasks();
@@ -44,5 +54,6 @@ module.exports = {
   getTasks,
   getTask,
   postTask,
+  putTask,
   resetTasks,
 };

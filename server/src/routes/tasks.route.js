@@ -4,12 +4,13 @@ const tasksController = require("../controllers/tasks.controller");
 
 const router = express.Router();
 
-router
-  .route("/")
+router.route("/")
   .get(tasksController.getTasks)
   .post(tasksController.postTask);
 
-router.get("/:id", tasksController.getTask);
+router.route("/:id")
+  .get(tasksController.getTask)
+  .put(tasksController.putTask);
 
 router.route("/reset").post(tasksController.resetTasks);
 
