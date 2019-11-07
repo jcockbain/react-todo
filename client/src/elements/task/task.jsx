@@ -4,9 +4,16 @@ import PropTypes from "prop-types";
 
 import classes from "./task.module.css";
 
-const Task = ({ task, deleteTask, putTask, index }) => {
+const Task = ({ task, deleteTask, putTask }) => {
   return (
-    <div className={classes.task}>
+    <div
+      style={
+        new Date() > new Date(task.completeBy)
+          ? { backgroundColor: "orange" }
+          : {}
+      }
+      className={classes.task}
+    >
       <div className={classes.taskDescription}>{task.description}</div>
       <div className={classes.taskButtons}>
         <button style={{ backgroundColor: "#494CA2" }} onClick={() => {}}>
