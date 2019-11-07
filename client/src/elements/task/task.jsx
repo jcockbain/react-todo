@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import classes from "./task.module.css";
 
-const Task = ({ task, index }) => {
+const Task = ({ task, deleteTask, index }) => {
   return (
     <div className={classes.task}>
       <div className={classes.taskDescription}>{task.description}</div>
@@ -19,7 +19,10 @@ const Task = ({ task, index }) => {
         >
           {task.completed ? "Uncomplete" : "Complete"}
         </button>
-        <button style={{ backgroundColor: "#C70D3A" }} onClick={() => {}}>
+        <button
+          style={{ backgroundColor: "#C70D3A" }}
+          onClick={id => deleteTask(task.id)}
+        >
           x
         </button>
       </div>
