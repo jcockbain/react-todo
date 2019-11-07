@@ -3,11 +3,22 @@
 }
 
 .task {
+  display: flex;
+  justify-content: space-between;
+  /* display: flex; */
   font-size: 14px;
   border: 2px solid #494CA2;
   border-radius: 5px;
   padding: 0.5em;
   margin: 0.5em;
+}
+
+.taskButtons {
+  float: right;
+}
+
+.taskDescription {
+  float: left
 }
 
 .task button {
@@ -18,5 +29,15 @@
   border: none;
   cursor: pointer;
   color: white;
-  float: right;
+}
+
+/* cover iPhone 5/SE */
+@media only screen and (max-height: 610px) {
+  .task {
+    width: 250px;
+  }
+
+  .button {
+    font-size: 10px;
+  }
 }

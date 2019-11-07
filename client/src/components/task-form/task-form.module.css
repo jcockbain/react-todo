@@ -1,0 +1,10 @@
+.taskFormContainer {
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.addTask {
+  margin: 20px;
+  display: flex;
+}

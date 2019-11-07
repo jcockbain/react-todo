@@ -6,14 +6,14 @@ import Header from "../../components/header";
 import Card from "../../elements/card";
 
 import classes from "./app.module.css";
-import TaskList from "../../components/tasklist/tasklist";
+import TaskPanel from "../../components/task-panel";
 
 const App = () => (
   <div className={classes.appWrapper}>
     <Header />
     <main className={classes.appMain}>
       <Card>
-        <TaskList />
+        <TaskPanel />
       </Card>
     </main>
   </div>

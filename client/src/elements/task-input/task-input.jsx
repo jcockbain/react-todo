@@ -18,7 +18,7 @@ const TaskInput = ({ addTask }) => {
         type="text"
         className={classes.createTask}
         value={value}
-        placeholder="Add a new task"
+        placeholder="Task description"
         onChange={e => setValue(e.target.value)}
       />
     </form>
