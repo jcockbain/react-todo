@@ -1,6 +1,7 @@
 const getTasks = (req, res, next) => {
   try {
     const tasks = req.tasks.getTasks();
+    console.log(tasks);
     res.status(200).send(tasks);
   } catch (err) {
     next(err);

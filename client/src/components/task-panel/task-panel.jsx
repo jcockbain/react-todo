@@ -9,22 +9,26 @@ import axios from "axios";
 
 const TaskPanel = () => {
   const [tasks, setTasks] = useState([]);
+  const [tasksUpdated, setTasksUpdated] = useState(true);
 
   console.log(tasks);
 
   // For page first loading
   useEffect(() => {
     const fetchData = () => {
-      setNewTasks();
+      updateTasks();
     };
     fetchData();
-  }, []);
+  }, [tasksUpdated]);
 
-  const setNewTasks = () => {
+  const updateTasks = () => {
     axios
       .get(`${origin}/api/v1/tasks`)
       .then(response => {
-        setTasks(response.data);
+        if (tasksUpdated) {
+          setTasks(response.data);
+          setTasksUpdated(false);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -33,7 +37,9 @@ const TaskPanel = () => {
   const postTask = taskInfo => {
     axios
       .post(`${origin}/api/v1/tasks`, taskInfo)
-      .then(setNewTasks())
+      .then(() => {
+        setTasksUpdated(true);
+      })
       .catch(err => {
         console.log(err);
       });
@@ -42,7 +48,9 @@ const TaskPanel = () => {
   const putTask = (taskID, taskInfo) => {
     axios
       .put(`${origin}/api/v1/tasks/${taskID}`, taskInfo)
-      .then(setNewTasks())
+      .then(() => {
+        setTasksUpdated(true);
+      })
       .catch(err => {
         console.log(err);
       });
@@ -51,16 +59,23 @@ const TaskPanel = () => {
   const deleteTask = taskID => {
     axios
       .delete(`${origin}/api/v1/tasks/${taskID}`)
-      .then(setNewTasks())
+      .then(() => {
+        setTasksUpdated(true);
+      })
       .catch(err => {
         console.log(err);
       });
   };
 
   const addTask = taskInfo => {
-    axios.post(`${origin}/api/v1/tasks`, taskInfo).catch(err => {
-      console.log(err);
-    });
+    axios
+      .post(`${origin}/api/v1/tasks`, taskInfo)
+      .then(() => {
+        setTasksUpdated(true);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -75,9 +90,6 @@ const TaskPanel = () => {
             putTask={putTask}
           />
         ))}
-      </div>
-      <div className={classes.addTaskButton}>
-        <button>Add task</button>
       </div>
       <TaskForm submitTask={postTask} />
     </div>
