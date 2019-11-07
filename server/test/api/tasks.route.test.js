@@ -63,6 +63,10 @@ describe("/api/v1/tasks", () => {
       expect(res.status).to.equal(200);
       expect(res.body).to.deep.equal({ ...task1, id: 1 });
     });
+    it("returns 404 for task not found", async () => {
+      const res = await server().get("/api/v1/tasks/10");
+      expect(res.status).to.equal(404);
+    });
   });
   describe("PUT /tasks/id", () => {
     it("returns 200", async () => {
@@ -76,6 +80,12 @@ describe("/api/v1/tasks", () => {
       expect(res.status).to.equal(200);
       expect(res.body).to.deep.equal({ ...task1, id: 1, ...taskUpdate });
     });
+    it("returns 404 for task not found", async () => {
+      const res = await server()
+        .put("/api/v1/tasks/10")
+        .send(taskUpdate);
+      expect(res.status).to.equal(404);
+    });
   });
   describe("DELETE /tasks/id", () => {
     it("returns 200", async () => {
@@ -86,6 +96,12 @@ describe("/api/v1/tasks", () => {
       const res = await server().get("/api/v1/tasks");
       expect(res.status).to.equal(200);
       expect(res.body).to.deep.equal([{ ...task1, id: 1, ...taskUpdate }]);
+    });
+    it("returns 404 for task not found", async () => {
+      const res = await server()
+        .delete("/api/v1/tasks/10")
+        .send(taskUpdate);
+      expect(res.status).to.equal(404);
     });
   });
 });

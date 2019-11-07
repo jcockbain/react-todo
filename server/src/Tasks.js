@@ -1,3 +1,5 @@
+const ResponseError = require("./utils/ResponseError");
+
 class Tasks {
   constructor(taskList) {
     this.tasks = taskList;
@@ -19,6 +21,9 @@ class Tasks {
 
   getTask(id) {
     const task = this.tasks.find(task => id === task.id);
+    if (!task) {
+      throw new ResponseError(404, `task ${id} not found`);
+    }
     return task;
   }
 
@@ -34,7 +39,7 @@ class Tasks {
     if (todoFound) {
       this.tasks.splice(itemIndex, 1);
     } else {
-      throw new Error(`Task with id ${id} not found`);
+      throw new ResponseError(404, `task ${id} not found`);
     }
   }
 
@@ -50,7 +55,7 @@ class Tasks {
     if (taskFound) {
       this.tasks.splice(itemIndex, 1, { ...taskFound, ...taskInfo });
     } else {
-      throw new Error(`Task with id ${id} not found`);
+      throw new ResponseError(404, `task ${id} not found`);
     }
   }
 }
