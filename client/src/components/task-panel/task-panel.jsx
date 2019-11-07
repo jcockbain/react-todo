@@ -11,9 +11,6 @@ const TaskPanel = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksUpdated, setTasksUpdated] = useState(true);
 
-  console.log(tasks);
-
-  // For page first loading
   useEffect(() => {
     const fetchData = () => {
       updateTasks();
@@ -34,6 +31,7 @@ const TaskPanel = () => {
         console.log(err);
       });
   };
+
   const postTask = taskInfo => {
     axios
       .post(`${origin}/api/v1/tasks`, taskInfo)
@@ -67,21 +65,26 @@ const TaskPanel = () => {
       });
   };
 
-  const addTask = taskInfo => {
-    axios
-      .post(`${origin}/api/v1/tasks`, taskInfo)
-      .then(() => {
-        setTasksUpdated(true);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  const taskList =
+    tasks.length > 0 ? (
+      tasks.map((task, index) => (
+        <Task
+          task={task}
+          index={index}
+          key={index}
+          deleteTask={deleteTask}
+          putTask={putTask}
+        />
+      ))
+    ) : (
+      <p>Add some tasks!</p>
+    );
 
   return (
     <div className={classes.taskListContainer}>
       <div className="tasks">
-        {tasks.map((task, index) => (
+        {taskList}
+        {/* {tasks.map((task, index) => (
           <Task
             task={task}
             index={index}
@@ -89,7 +92,7 @@ const TaskPanel = () => {
             deleteTask={deleteTask}
             putTask={putTask}
           />
-        ))}
+        ))} */}
       </div>
       <TaskForm submitTask={postTask} />
     </div>
