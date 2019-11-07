@@ -16,6 +16,21 @@ const TaskPanel = () => {
       completeBy: 1487730600000,
       completed: false,
     },
+    {
+      description: "Walk dog",
+      completeBy: 1487730600000,
+      completed: false,
+    },
+    {
+      description: "Walk dog",
+      completeBy: 1487730600000,
+      completed: false,
+    },
+    {
+      description: "Walk dog",
+      completeBy: 1487730600000,
+      completed: false,
+    },
   ]);
   return (
     <div className={classes.taskListContainer}>

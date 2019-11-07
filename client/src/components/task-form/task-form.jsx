@@ -10,6 +10,9 @@ const TaskForm = props => {
     <div className={classes.taskFormContainer}>
       Add a new task
       <div className={classes.addTask}>
+        <div className={classes.submitButton}>
+          <button>Submit</button>
+        </div>
         <TaskInput />
         <DatePicker />
       </div>
