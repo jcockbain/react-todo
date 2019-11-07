@@ -41,7 +41,7 @@ const Task = ({ task, deleteTask, putTask }) => {
             putTask(task.id, { ...task, completed: !task.completed })
           }
         >
-          {task.completed ? "Uncomplete" : "Complete"}
+          {task.completed ? "Incomplete" : "Complete"}
         </button>
         <button
           style={{ backgroundColor: "#C70D3A" }}
