@@ -4,7 +4,7 @@ import Task from "../../elements/task";
 import { origin } from "../../config";
 
 import classes from "./task-panel.module.css";
-import TaskForm from "../task-form";
+import TaskForm from "../../components/task-form";
 import axios from "axios";
 
 const TaskPanel = () => {

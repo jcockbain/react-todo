@@ -3,6 +3,24 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const cors = require("cors");
 const Tasks = require("./Tasks");
+const config = require("./config");
+
+const mongoose = require("mongoose");
+
+mongoose.connect(config.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
+
+const db = mongoose.connection;
+db.once("open", _ => {
+  console.log("Database connected:", config.DB);
+});
+
+db.on("error", err => {
+  console.error("connection error:", err);
+});
 
 const middleware = require("./middleware");
 

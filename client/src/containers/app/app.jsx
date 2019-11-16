@@ -6,7 +6,7 @@ import Header from "../../components/header";
 import Card from "../../elements/card";
 
 import classes from "./app.module.css";
-import TaskPanel from "../../components/task-panel";
+import TaskPanel from "../task-panel";
 
 const App = () => (
   <div className={classes.appWrapper}>

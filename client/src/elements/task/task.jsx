@@ -12,11 +12,11 @@ const Task = ({ task, deleteTask, putTask }) => {
     putTask(task.id, taskDescription);
   }, [taskDescription]);
 
-  const onChange = () =>
-    putTask(task.id, {
-      ...task,
-      description: taskDescription,
-    });
+  // const onChange = () =>
+  //   putTask(task.id, {
+  //     ...task,
+  //     description: taskDescription,
+  //   });
 
   return (
     <div
