@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import classes from "./datepicker.module.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 const Datepicker = ({ addDate }) => {
   const [date, setDate] = useState(undefined);
@@ -12,10 +11,10 @@ const Datepicker = ({ addDate }) => {
     }
   }, [date]);
   const datePicker = date ? (
-    <DatePicker selected={date} onChange={date => setDate(date)} />
+    <DatePicker selected={date} onChange={(selectedDate) => setDate(selectedDate)} />
   ) : (
     <DatePicker
-      onChange={date => setDate(date)}
+      onChange={(selectedDate) => setDate(selectedDate)}
       placeholderText="Select a deadline"
     />
   );

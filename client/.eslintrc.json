@@ -1,14 +1,14 @@
 {
     "env": {
-        "browser": true,
+        "node": true,
         "commonjs": true,
         "es6": true,
-        "node": true,
         "jest": true
     },
     "extends": [
         "airbnb"
     ],
+    "parser":"babel-eslint",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -22,5 +22,6 @@
     "plugins": [
         "react"
     ],
-    "rules": {}
+    "rules": {
+    }
 }

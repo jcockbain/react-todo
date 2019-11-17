@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import PropTypes from "prop-types";
-import TaskInput from "../task-input";
+import PropTypes from 'prop-types';
+import TaskInput from '../task-input';
 
-import classes from "./task.module.css";
+import classes from './task.module.css';
 
 const Task = ({ task, deleteTask, putTask }) => {
   const [taskDescription, setTaskDescription] = useState(task.description);
@@ -12,17 +12,11 @@ const Task = ({ task, deleteTask, putTask }) => {
     putTask(task.id, taskDescription);
   }, [taskDescription]);
 
-  const onChange = () =>
-    putTask(task.id, {
-      ...task,
-      description: taskDescription,
-    });
-
   return (
     <div
       style={
         new Date() > new Date(task.completeBy)
-          ? { backgroundColor: "orange" }
+          ? { backgroundColor: 'orange' }
           : {}
       }
       className={classes.task}
@@ -35,17 +29,17 @@ const Task = ({ task, deleteTask, putTask }) => {
       </div>
       <div className={classes.taskButtons}>
         <button
-          style={{ backgroundColor: "green" }}
+          type="submit"
+          style={{ backgroundColor: 'green' }}
           className={classes.complete}
-          onClick={() =>
-            putTask(task.id, { ...task, completed: !task.completed })
-          }
+          onClick={() => putTask(task.id, { ...task, completed: !task.completed })}
         >
-          {task.completed ? "Incomplete" : "Complete"}
+          {task.completed ? 'Incomplete' : 'Complete'}
         </button>
         <button
-          style={{ backgroundColor: "#C70D3A" }}
-          onClick={id => deleteTask(task.id)}
+          type="submit"
+          style={{ backgroundColor: '#C70D3A' }}
+          onClick={() => deleteTask(task.id)}
         >
           x
         </button>
@@ -54,6 +48,10 @@ const Task = ({ task, deleteTask, putTask }) => {
   );
 };
 
-Task.propTypes = {};
+Task.propTypes = {
+  task: PropTypes.objectOf(PropTypes.any).isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  putTask: PropTypes.func.isRequired,
+};
 
 export default Task;
