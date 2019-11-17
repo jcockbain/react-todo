@@ -1,4 +1,4 @@
-const ResponseError = require("./utils/ResponseError");
+const ResponseError = require('./utils/ResponseError');
 
 class Tasks {
   constructor(taskList) {
@@ -20,7 +20,7 @@ class Tasks {
   }
 
   getTask(id) {
-    const task = this.tasks.find(task => id === task.id);
+    const task = this.tasks.find((selectedTask) => id === selectedTask.id);
     if (!task) {
       throw new ResponseError(404, `task ${id} not found`);
     }

@@ -1,4 +1,4 @@
-const { logError } = require("../utils");
+const { logError } = require('../utils');
 
 function handleErrors(error, req, res, next) {
   logError(error);
