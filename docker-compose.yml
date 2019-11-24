@@ -1,0 +1,27 @@
+version: "3"
+services:
+    server:
+        build: ./server
+        expose:
+            - ${SERVER_PORT}
+        environment:
+            SERVER_PORT: ${SERVER_PORT}
+        ports:
+            - ${SERVER_PORT}:${SERVER_PORT}
+        volumes:
+            - ./api:/api
+            - /api/node_modules
+        command: npm start
+    client:
+        build: ./client
+        expose:
+            - ${CLIENT_PORT}
+        environment:
+            CLIENT_PORT: ${CLIENT_PORT}
+        ports:
+            - ${CLIENT_PORT}:${CLIENT_PORT}
+        volumes:
+            - ./client:/client
+            - /client/node_modules
+        command:
+            npm start

@@ -1,15 +1,29 @@
-import React, { useState, useEffect } from "react";
-import Task from "../../elements/task";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Task from '../../elements/task';
 
-import { origin } from "../../config";
+import { origin } from '../../config';
 
-import classes from "./task-panel.module.css";
-import TaskForm from "../task-form";
-import axios from "axios";
+import classes from './task-panel.module.css';
+import TaskForm from '../task-form';
 
 const TaskPanel = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksUpdated, setTasksUpdated] = useState(true);
+
+  const updateTasks = () => {
+    axios
+      .get(`${origin}/api/v1/tasks`)
+      .then((response) => {
+        if (tasksUpdated) {
+          setTasks(response.data);
+          setTasksUpdated(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     const fetchData = () => {
@@ -18,27 +32,13 @@ const TaskPanel = () => {
     fetchData();
   }, [tasksUpdated]);
 
-  const updateTasks = () => {
-    axios
-      .get(`${origin}/api/v1/tasks`)
-      .then(response => {
-        if (tasksUpdated) {
-          setTasks(response.data);
-          setTasksUpdated(false);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const postTask = taskInfo => {
+  const postTask = (taskInfo) => {
     axios
       .post(`${origin}/api/v1/tasks`, taskInfo)
       .then(() => {
         setTasksUpdated(true);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -49,36 +49,35 @@ const TaskPanel = () => {
       .then(() => {
         setTasksUpdated(true);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const deleteTask = taskID => {
+  const deleteTask = (taskID) => {
     axios
       .delete(`${origin}/api/v1/tasks/${taskID}`)
       .then(() => {
         setTasksUpdated(true);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const taskList =
-    tasks.length > 0 ? (
-      tasks.map((task, index) => (
-        <Task
-          task={task}
-          index={index}
-          key={index}
-          deleteTask={deleteTask}
-          putTask={putTask}
-        />
-      ))
-    ) : (
-      <p>Add some tasks!</p>
-    );
+  const taskList = tasks.length > 0 ? (
+    tasks.map((task, index) => (
+      <Task
+        task={task}
+        index={index}
+        key={index}
+        deleteTask={deleteTask}
+        putTask={putTask}
+      />
+    ))
+  ) : (
+    <p>Add some tasks!</p>
+  );
 
   return (
     <div className={classes.taskListContainer}>
