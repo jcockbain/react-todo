@@ -6,7 +6,7 @@ const cors = require('cors');
 const routes = require('./routes');
 const Tasks = require('./Tasks');
 
-const port = process.env.PORT || 5000;
+const port = process.env.SERVER_PORT || 3000;
 
 const middleware = require('./middleware');
 
